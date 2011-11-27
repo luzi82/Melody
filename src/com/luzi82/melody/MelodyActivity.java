@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -48,9 +49,8 @@ public class MelodyActivity extends Activity {
 		mPathStack = new LinkedList<BrowseEntry>();
 
 		BrowseEntry rootEntry = new BrowseEntry();
-		// rootEntry.mPath =
-		// Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC).getAbsolutePath();
-		rootEntry.mPath = "/";
+		rootEntry.mPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC).getAbsolutePath();
+		// rootEntry.mPath = "/";
 		rootEntry.mItemIndex = 0;
 		cd(rootEntry);
 	}
