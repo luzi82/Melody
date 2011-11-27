@@ -2,16 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:gravity="center_vertical" >
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
 
-    <ListView
-        android:id="@+id/main_list"
+    <ViewAnimator
+        android:id="@+id/viewanimator"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:textSize="18sp"
-        android:drawSelectorOnTop="false"
-        android:fastScrollEnabled="true" />
-        
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/mainlist_0"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:drawSelectorOnTop="false"
+            android:fastScrollEnabled="true" />
+
+        <ListView
+            android:id="@+id/mainlist_1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:drawSelectorOnTop="false"
+            android:fastScrollEnabled="true" />
+    </ViewAnimator>
+
 </LinearLayout>

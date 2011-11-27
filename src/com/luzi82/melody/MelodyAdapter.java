@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-
 // extends BasicAdapter
 
 public class MelodyAdapter extends BaseAdapter {
@@ -26,8 +25,8 @@ public class MelodyAdapter extends BaseAdapter {
 	}
 
 	public void setDirectory(String aPath) {
-		System.err.println("setDirectory "+aPath);
-		
+		System.err.println("setDirectory " + aPath);
+
 		mEntryList.clear();
 
 		LinkedList<Entry> dirList = new LinkedList<Entry>();
@@ -60,7 +59,9 @@ public class MelodyAdapter extends BaseAdapter {
 		mEntryList.addAll(dirList);
 		mEntryList.addAll(musicList);
 
-//		notifyOnChanged();
+		System.err.println("setDirectory mEntryList.size() " + mEntryList.size());
+
+		// notifyOnChanged();
 		notifyDataSetChanged();
 	}
 
@@ -86,6 +87,7 @@ public class MelodyAdapter extends BaseAdapter {
 
 	@Override
 	public long getItemId(int position) {
+		System.err.println("getItemId mEntryList.size() " + mEntryList.size());
 		Entry e = mEntryList.get(position);
 		if (e == null)
 			return -1;
