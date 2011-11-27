@@ -15,9 +15,9 @@ public class MelodyActivity extends Activity {
 
 	LinkedList<BrowseEntry> mPathStack;
 	MelodyAdapter[] mAdapter;
-	ListView[] mainlist;
+	ListView[] mMainlist;
 	static final int[] LISTID = { R.id.mainlist_0, R.id.mainlist_1 };
-	ViewAnimator viewanimator;
+	ViewAnimator mViewanimator;
 	double PHI = (1.0d + Math.sqrt(5.0d)) / 2.0d;
 	double PHI2 = PHI * PHI;
 	int UNIT_HEIGHT = 64;
@@ -31,18 +31,18 @@ public class MelodyActivity extends Activity {
 
 		setContentView(R.layout.main);
 
-		mainlist = new ListView[LISTID.length];
+		mMainlist = new ListView[LISTID.length];
 		for (int i = 0; i < LISTID.length; ++i) {
-			mainlist[i] = (ListView) findViewById(LISTID[i]);
+			mMainlist[i] = (ListView) findViewById(LISTID[i]);
 		}
 
-		viewanimator = (ViewAnimator) findViewById(R.id.viewanimator);
+		mViewanimator = (ViewAnimator) findViewById(R.id.viewanimator);
 
-		mAdapter = new MelodyAdapter[mainlist.length];
-		for (int i = 0; i < mainlist.length; ++i) {
+		mAdapter = new MelodyAdapter[mMainlist.length];
+		for (int i = 0; i < mMainlist.length; ++i) {
 			mAdapter[i] = new MelodyAdapter(this);
-			mainlist[i].setAdapter(mAdapter[i]);
-			mainlist[i].setOnItemClickListener(mOnItemClickListener);
+			mMainlist[i].setAdapter(mAdapter[i]);
+			mMainlist[i].setOnItemClickListener(mOnItemClickListener);
 		}
 
 		mPathStack = new LinkedList<BrowseEntry>();
@@ -59,21 +59,21 @@ public class MelodyActivity extends Activity {
 		int top = 0;
 		int y = 0;
 
-		int nextListIndex = (mCurrentListIndex + 1) % mainlist.length;
+		int nextListIndex = (mCurrentListIndex + 1) % mMainlist.length;
 
-		ListView nextView = mainlist[nextListIndex];
+		ListView nextView = mMainlist[nextListIndex];
 		MelodyAdapter nextAdapter = mAdapter[nextListIndex];
 
 		if (aEntry != null) {
 			mPathStack.addLast(aEntry);
-			viewanimator.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.push_left_in));
-			viewanimator.setOutAnimation(AnimationUtils.loadAnimation(this, R.anim.push_left_out));
+			mViewanimator.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.push_left_in));
+			mViewanimator.setOutAnimation(AnimationUtils.loadAnimation(this, R.anim.push_left_out));
 		} else {
 			top = mPathStack.getLast().mItemIndex;
 			y = (int) ((nextView.getHeight() - TypedValue.applyDimension(UNIT_HEIGHT_UNIT, UNIT_HEIGHT, getResources().getDisplayMetrics())) / PHI2);
 			mPathStack.removeLast();
-			viewanimator.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.push_right_in));
-			viewanimator.setOutAnimation(AnimationUtils.loadAnimation(this, R.anim.push_right_out));
+			mViewanimator.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.push_right_in));
+			mViewanimator.setOutAnimation(AnimationUtils.loadAnimation(this, R.anim.push_right_out));
 		}
 		if (mPathStack.isEmpty()) {
 			return false;
@@ -87,8 +87,8 @@ public class MelodyActivity extends Activity {
 		setTitle(p);
 		// viewanimator.setDisplayedChild(LISTID[mNextListIndex]);
 		if (mCurrentListIndex >= 0) {
-			viewanimator.showNext();
-			System.err.println(viewanimator.getDisplayedChild());
+			mViewanimator.showNext();
+			System.err.println(mViewanimator.getDisplayedChild());
 		}
 
 		mCurrentListIndex = nextListIndex;
